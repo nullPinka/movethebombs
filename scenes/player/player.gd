@@ -1,0 +1,44 @@
+extends Node
+
+var selection_rect = Rect2()
+var sel_uni = []
+var oldpos = null
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				selection_rect = Rect2()
+				$selrect.visible = true
+				selection_rect.position = event.position
+			else:
+				$selrect.visible = false
+				var units = get_parent().get_node("units").get_children()
+				sel_uni = []
+				for unit in units:
+					if selection_rect.abs().has_point(unit.global_position):
+						sel_uni.append(unit)
+						print(sel_uni)
+	
+	if event is InputEventMouseMotion:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			var pos = get_viewport().get_mouse_position()
+			selection_rect.size = pos - selection_rect.position
+
+func show_rect():
+	$selrect.position = selection_rect.position
+	var srect_dir = sign(selection_rect.size)
+	if srect_dir.x < 0:
+		$selrect.position.x += selection_rect.size.x
+	if srect_dir.y < 0:
+		$selrect.position.y += selection_rect.size.y
+	$selrect.size = abs(selection_rect.size)
+
+func move_selected_units():
+	for unit in sel_uni:
+		unit.global_position.lerp()
+	return;
+
+func _physics_process(delta):
+	show_rect()
+	move_selected_units()
