@@ -20,6 +20,12 @@ func _input(event: InputEvent) -> void:
 						sel_uni.append(unit)
 						print(sel_uni)
 	
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			if event.pressed:
+				for u in sel_uni:
+					u.set_target_pos(get_viewport().get_mouse_position())
+	
 	if event is InputEventMouseMotion:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			var pos = get_viewport().get_mouse_position()
@@ -34,11 +40,5 @@ func show_rect():
 		$selrect.position.y += selection_rect.size.y
 	$selrect.size = abs(selection_rect.size)
 
-func move_selected_units():
-	for unit in sel_uni:
-		unit.global_position.lerp()
-	return;
-
 func _physics_process(delta):
 	show_rect()
-	move_selected_units()

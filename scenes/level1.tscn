@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3wk3pkfebvkd"]
+[gd_scene load_steps=5 format=3 uid="uid://b3wk3pkfebvkd"]
+
+[ext_resource type="PackedScene" uid="uid://ldi7ddyp0nae" path="res://scenes/unit/unit.tscn" id="1_g2h75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3g4x6"]
 size = Vector2(200, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2h75"]
 size = Vector2(200, 200)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_g2h75"]
+vertices = PackedVector2Array(1934.99, 1153.78, -25.8906, 1113.2, -14.1016, -44.0391, 1934, -52.9531)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1944, -63, 1945, 1164, -36, 1123, -24, -54)])
 
 [node name="level 1" type="Node2D"]
 
@@ -22,44 +29,23 @@ shape = SubResource("RectangleShape2D_g2h75")
 
 [node name="units" type="Node" parent="."]
 
-[node name="lilguy" type="ColorRect" parent="units"]
-offset_left = 858.0
-offset_top = 449.0
-offset_right = 898.0
-offset_bottom = 489.0
-color = Color(0, 0, 1, 1)
+[node name="unit" parent="units" instance=ExtResource("1_g2h75")]
+position = Vector2(547, 190)
 
-[node name="lilguy2" type="ColorRect" parent="units"]
-offset_left = 944.0
-offset_top = 506.0
-offset_right = 984.0
-offset_bottom = 546.0
-color = Color(0, 0, 1, 1)
+[node name="unit2" parent="units" instance=ExtResource("1_g2h75")]
+position = Vector2(678, 225)
 
-[node name="lilguy3" type="ColorRect" parent="units"]
-offset_left = 940.0
-offset_top = 391.0
-offset_right = 980.0
-offset_bottom = 431.0
-color = Color(0, 0, 1, 1)
+[node name="unit3" parent="units" instance=ExtResource("1_g2h75")]
+position = Vector2(667, 166)
 
-[node name="lilguy4" type="ColorRect" parent="units"]
-offset_left = 848.0
-offset_top = 345.0
-offset_right = 888.0
-offset_bottom = 385.0
-color = Color(0, 0, 1, 1)
+[node name="unit4" parent="units" instance=ExtResource("1_g2h75")]
+position = Vector2(588, 277)
 
-[node name="lilguy5" type="ColorRect" parent="units"]
-offset_left = 710.0
-offset_top = 390.0
-offset_right = 750.0
-offset_bottom = 430.0
-color = Color(0, 0, 1, 1)
+[node name="unit5" parent="units" instance=ExtResource("1_g2h75")]
+position = Vector2(506, 285)
 
-[node name="lilguy6" type="ColorRect" parent="units"]
-offset_left = 797.0
-offset_top = 506.0
-offset_right = 837.0
-offset_bottom = 546.0
-color = Color(0, 0, 1, 1)
+[node name="unit6" parent="units" instance=ExtResource("1_g2h75")]
+position = Vector2(655, 285)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_g2h75")
