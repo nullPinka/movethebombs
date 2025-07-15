@@ -21,3 +21,14 @@ offset_bottom = 40.0
 color = Color(0, 1, 1, 0.352941)
 
 [node name="units" type="Node" parent="."]
+
+[node name="timer" type="Node" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="timer"]
+offset_left = 852.0
+offset_top = 24.0
+offset_right = 1101.0
+offset_bottom = 77.0
+bbcode_enabled = true
+text = "0:00:00.000
+"

@@ -9,7 +9,6 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				selection_rect = Rect2()
-				$selrect.visible = true
 				selection_rect.position = event.position
 			else:
 				$selrect.visible = false
@@ -18,7 +17,6 @@ func _input(event: InputEvent) -> void:
 				for unit in units:
 					if selection_rect.abs().has_point(unit.global_position):
 						sel_uni.append(unit)
-						print(sel_uni)
 	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
@@ -32,6 +30,7 @@ func _input(event: InputEvent) -> void:
 			selection_rect.size = pos - selection_rect.position
 
 func show_rect():
+	$selrect.visible = true
 	$selrect.position = selection_rect.position
 	var srect_dir = sign(selection_rect.size)
 	if srect_dir.x < 0:
@@ -41,4 +40,5 @@ func show_rect():
 	$selrect.size = abs(selection_rect.size)
 
 func _physics_process(delta):
-	show_rect()
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		show_rect()

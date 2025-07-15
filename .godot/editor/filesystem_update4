@@ -1,0 +1,5 @@
+res://scenes/main.tscn
+res://scenes/unit/unit.gd
+res://scenes/player/player.gd
+res://scenes/main.gd
+res://scenes/level1.tscn
